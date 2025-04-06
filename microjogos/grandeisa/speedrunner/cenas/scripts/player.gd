@@ -20,6 +20,7 @@ const GRAVITY = 750.0
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var particles: CPUParticles2D = $CPUParticles2D
 
 # Responsável por coletar (e interpretar) as entradas do jogador
 func handle_input(delta: float):
@@ -77,7 +78,12 @@ func _physics_process(delta):
 	handle_input(delta) # Coletar entradas
 	handle_gravity(delta) # Aplicar gravidade
 	
+	var previous_grounded = is_on_floor()
+	
 	# Personagem se move (e desliza) baseado em sua variável 'velocity'
 	move_and_slide()
+	
+	if not previous_grounded and is_on_floor():
+		particles.emitting = true;
 	
 	
