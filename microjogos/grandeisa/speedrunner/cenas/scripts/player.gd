@@ -19,12 +19,14 @@ const GRAVITY = 750.0
 @export var wall_jump_force_multiplier: float = 1.0
 
 @onready var sprite: Sprite2D = $Sprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 # Responsável por coletar (e interpretar) as entradas do jogador
 func handle_input(delta: float):
 	# Pega as entradas de "esquerda" e "direita" e transforma em um número de -1 a 1
 	var horizontal_input = Input.get_axis("esquerda", "direita") 
 	
+	animation_player.play("walk" if horizontal_input != 0 && is_on_floor() else "idle")
 	if horizontal_input != 0:
 		sprite.flip_h = horizontal_input < 0
 		
