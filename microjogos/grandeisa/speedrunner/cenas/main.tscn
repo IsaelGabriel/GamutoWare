@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bevekv6g6asdk"]
+[gd_scene load_steps=5 format=3 uid="uid://bevekv6g6asdk"]
 
 [ext_resource type="Script" uid="uid://beu6071ju0o14" path="res://microjogos/grandeisa/speedrunner/cenas/scripts/player.gd" id="1_so0i5"]
 [ext_resource type="Texture2D" uid="uid://bc0d64fd1kohj" path="res://microjogos/grandeisa/speedrunner/capa.png" id="1_w3bkd"]
+[ext_resource type="Script" uid="uid://ddeb15oaqv7xo" path="res://microjogos/grandeisa/speedrunner/cenas/scripts/polygon_collision_converter.gd" id="3_wu8ny"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_so0i5"]
 size = Vector2(90, 90)
@@ -30,8 +31,9 @@ shape = SubResource("RectangleShape2D_so0i5")
 [node name="Map" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map"]
-polygon = PackedVector2Array(-46, 945, 1156, 973, 1460, 879, 1719, 948, 1971, 910, 2029, 1280, -28, 1287)
 
-[node name="Polygon2D" type="Polygon2D" parent="Map"]
+[node name="Polygon2D" type="Polygon2D" parent="Map" node_paths=PackedStringArray("collision_polygon")]
 color = Color(0.521583, 0.245134, 0.149402, 1)
-polygon = PackedVector2Array(-46, 945, 1156, 973, 1460, 879, 1719, 948, 1971, 910, 2029, 1280, -28, 1287)
+polygon = PackedVector2Array(-46, 945, 1156, 973, 1460, 879, 1719, 948, 4271, 955, 4785, 517, 4743, 1294, -28, 1287)
+script = ExtResource("3_wu8ny")
+collision_polygon = NodePath("../CollisionPolygon2D")
