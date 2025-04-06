@@ -4,6 +4,8 @@ extends Polygon2D
 
 # Nó que receberá a informação de colisão
 @export var collision_polygon : CollisionPolygon2D
+@export var edge_line: Line2D
 
 func _ready():
 	collision_polygon.polygon = polygon
+	edge_line.points = polygon

@@ -63,13 +63,17 @@ shape = SubResource("CapsuleShape2D_wu8ny")
 
 [node name="Map" type="StaticBody2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map"]
-
-[node name="Polygon2D" type="Polygon2D" parent="Map" node_paths=PackedStringArray("collision_polygon")]
+[node name="Polygon2D" type="Polygon2D" parent="Map" node_paths=PackedStringArray("collision_polygon", "edge_line")]
 color = Color(0.521583, 0.245134, 0.149402, 1)
 polygon = PackedVector2Array(-17, 5, 313, 28, 321, 970, 1156, 973, 1460, 879, 1719, 948, 4271, 955, 4329, 50, 4743, 1294, -28, 1287)
+uv = PackedVector2Array(-17, 5, 313, 28, 321, 970, 1156, 973, 1460, 879, 1719, 948, 4271, 955, 4329, 50, 4743, 1294, -28, 1287)
 script = ExtResource("3_wu8ny")
 collision_polygon = NodePath("../CollisionPolygon2D")
+edge_line = NodePath("../EdgeLine")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Map"]
+
+[node name="EdgeLine" type="Line2D" parent="Map"]
 
 [node name="Goal" type="Area2D" parent="."]
 position = Vector2(4053, 744)
