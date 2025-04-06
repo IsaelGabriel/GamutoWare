@@ -20,6 +20,7 @@ extends Resource
 	"demo": "Demo",
 	"godotware": "Godotware",
 	"moraguma": "Moraguma",
+	"grandeisa": "Grandeisa",
 
 	"no_gore": "No gore",
 	"no_luck": "No luck",

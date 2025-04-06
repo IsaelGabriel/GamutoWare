@@ -6,7 +6,8 @@ const minigame_packs = {
 	"class_of_2022" : preload("res://principal/recursos/data/packs/class_of_2022.tres"),
 	"demo" : preload("res://principal/recursos/data/packs/demo.tres"),
 	"godotware": preload("res://principal/recursos/data/packs/godotware.tres"),
-	"moraguma":  preload("res://principal/recursos/data/packs/moraguma.tres")
+	"moraguma":  preload("res://principal/recursos/data/packs/moraguma.tres"),
+	"grandeisa" : preload("res://principal/recursos/data/packs/grandeisa.tres")
 }
 
 # Removed from Moraguma
