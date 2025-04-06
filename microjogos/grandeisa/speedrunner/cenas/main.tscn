@@ -15,8 +15,10 @@ texture_filter = 1
 position = Vector2(864, 639)
 script = ExtResource("1_so0i5")
 speed = 1200.0
+acceleration = 700.0
 jump_force = 300.0
 max_jump_duration = 0.35
+wall_jump_force_multiplier = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(4, -248)
@@ -37,6 +39,6 @@ shape = SubResource("CapsuleShape2D_wu8ny")
 
 [node name="Polygon2D" type="Polygon2D" parent="Map" node_paths=PackedStringArray("collision_polygon")]
 color = Color(0.521583, 0.245134, 0.149402, 1)
-polygon = PackedVector2Array(-46, 945, 1156, 973, 1460, 879, 1719, 948, 4271, 955, 4785, 517, 4743, 1294, -28, 1287)
+polygon = PackedVector2Array(-17, 5, 313, 28, 321, 970, 1156, 973, 1460, 879, 1719, 948, 4271, 955, 4329, 50, 4743, 1294, -28, 1287)
 script = ExtResource("3_wu8ny")
 collision_polygon = NodePath("../CollisionPolygon2D")
