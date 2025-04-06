@@ -1,9 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bevekv6g6asdk"]
+[gd_scene load_steps=10 format=3 uid="uid://bevekv6g6asdk"]
 
 [ext_resource type="Script" uid="uid://c15gyqftmxyob" path="res://microjogos/grandeisa/speedrunner/cenas/scripts/main.gd" id="1_nveuw"]
 [ext_resource type="Script" uid="uid://beu6071ju0o14" path="res://microjogos/grandeisa/speedrunner/cenas/scripts/player.gd" id="1_so0i5"]
 [ext_resource type="Texture2D" uid="uid://bc0d64fd1kohj" path="res://microjogos/grandeisa/speedrunner/capa.png" id="1_w3bkd"]
+[ext_resource type="Script" uid="uid://c45erhsywn7yp" path="res://microjogos/grandeisa/speedrunner/cenas/scripts/trail.gd" id="3_vvsp7"]
 [ext_resource type="Script" uid="uid://ddeb15oaqv7xo" path="res://microjogos/grandeisa/speedrunner/cenas/scripts/polygon_collision_converter.gd" id="3_wu8ny"]
+
+[sub_resource type="Curve" id="Curve_nveuw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.968085, 0.123596), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vvsp7"]
+offsets = PackedFloat32Array(0.293333, 1)
+colors = PackedColorArray(0, 0.836766, 0.840522, 0.815686, 1, 1, 1, 0.25098)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wu8ny"]
 radius = 38.71
@@ -15,6 +24,20 @@ size = Vector2(112.5, 450)
 [node name="Main" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_nveuw")
+
+[node name="Trail" type="Line2D" parent="." node_paths=PackedStringArray("tracked_node")]
+points = PackedVector2Array(0, 0, -227, -28)
+width = 30.0
+width_curve = SubResource("Curve_nveuw")
+gradient = SubResource("Gradient_vvsp7")
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("3_vvsp7")
+tracked_node = NodePath("../Player")
+
+[node name="Timer" type="Timer" parent="Trail"]
+wait_time = 0.025
+autostart = true
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(864, 639)
@@ -58,4 +81,5 @@ texture = ExtResource("1_w3bkd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
 shape = SubResource("RectangleShape2D_wu8ny")
 
+[connection signal="timeout" from="Trail/Timer" to="Trail" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Goal" to="." method="_on_goal_body_entered"]
