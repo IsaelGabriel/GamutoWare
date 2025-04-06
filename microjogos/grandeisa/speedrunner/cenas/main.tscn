@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bevekv6g6asdk"]
+[gd_scene load_steps=11 format=3 uid="uid://bevekv6g6asdk"]
 
 [ext_resource type="Script" uid="uid://c15gyqftmxyob" path="res://microjogos/grandeisa/speedrunner/cenas/scripts/main.gd" id="1_nveuw"]
 [ext_resource type="Script" uid="uid://beu6071ju0o14" path="res://microjogos/grandeisa/speedrunner/cenas/scripts/player.gd" id="1_so0i5"]
 [ext_resource type="Texture2D" uid="uid://bc0d64fd1kohj" path="res://microjogos/grandeisa/speedrunner/capa.png" id="1_w3bkd"]
 [ext_resource type="Script" uid="uid://c45erhsywn7yp" path="res://microjogos/grandeisa/speedrunner/cenas/scripts/trail.gd" id="3_vvsp7"]
 [ext_resource type="Script" uid="uid://ddeb15oaqv7xo" path="res://microjogos/grandeisa/speedrunner/cenas/scripts/polygon_collision_converter.gd" id="3_wu8ny"]
+[ext_resource type="Texture2D" uid="uid://p74nvt0i71g7" path="res://microjogos/grandeisa/speedrunner/recursos/imagens/player-static.png" id="5_3aahk"]
 
 [sub_resource type="Curve" id="Curve_nveuw"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.968085, 0.123596), 0.0, 0.0, 0, 0]
@@ -12,7 +13,7 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_vvsp7"]
 offsets = PackedFloat32Array(0.293333, 1)
-colors = PackedColorArray(0, 0.836766, 0.840522, 0.815686, 1, 1, 1, 0.25098)
+colors = PackedColorArray(0.345098, 0, 1, 0.815686, 1, 1, 1, 0.25098)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wu8ny"]
 radius = 38.71
@@ -24,6 +25,12 @@ size = Vector2(112.5, 450)
 [node name="Main" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_nveuw")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.294278, 0.460144, 0.516754, 1)
+position = Vector2(2125, 536)
+scale = Vector2(13.2889, 5.54444)
+texture = ExtResource("1_w3bkd")
 
 [node name="Trail" type="Line2D" parent="." node_paths=PackedStringArray("tracked_node")]
 points = PackedVector2Array(0, 0, -227, -28)
@@ -53,10 +60,10 @@ position = Vector2(4, -248)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.5
 
-[node name="Capa" type="Sprite2D" parent="Player"]
+[node name="Sprite" type="Sprite2D" parent="Player"]
 modulate = Color(0.392157, 0.32549, 1, 1)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_w3bkd")
+scale = Vector2(5, 5)
+texture = ExtResource("5_3aahk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CapsuleShape2D_wu8ny")
@@ -64,7 +71,7 @@ shape = SubResource("CapsuleShape2D_wu8ny")
 [node name="Map" type="StaticBody2D" parent="."]
 
 [node name="Polygon2D" type="Polygon2D" parent="Map" node_paths=PackedStringArray("collision_polygon", "edge_line")]
-color = Color(0.521583, 0.245134, 0.149402, 1)
+color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-17, 5, 313, 28, 321, 970, 1156, 973, 1460, 879, 1719, 948, 4271, 955, 4329, 50, 4743, 1294, -28, 1287)
 uv = PackedVector2Array(-17, 5, 313, 28, 321, 970, 1156, 973, 1460, 879, 1719, 948, 4271, 955, 4329, 50, 4743, 1294, -28, 1287)
 script = ExtResource("3_wu8ny")

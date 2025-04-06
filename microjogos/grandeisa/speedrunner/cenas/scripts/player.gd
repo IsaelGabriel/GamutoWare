@@ -18,12 +18,16 @@ const GRAVITY = 750.0
 # Multiplicador da força do pulo para impulso de parede
 @export var wall_jump_force_multiplier: float = 1.0
 
+@onready var sprite: Sprite2D = $Sprite
+
 # Responsável por coletar (e interpretar) as entradas do jogador
 func handle_input(delta: float):
 	# Pega as entradas de "esquerda" e "direita" e transforma em um número de -1 a 1
 	var horizontal_input = Input.get_axis("esquerda", "direita") 
 	
 	if horizontal_input != 0:
+		sprite.flip_h = horizontal_input < 0
+		
 		if abs(velocity.x) * horizontal_input == velocity.x: # Se a velocidade está na mesma direção da entrada de movimento
 			if abs(velocity.x) < abs(speed):
 				velocity.x = clamp(velocity.x + acceleration * delta * horizontal_input, -speed, speed)
