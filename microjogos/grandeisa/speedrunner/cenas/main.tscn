@@ -48,14 +48,14 @@ polygon = PackedVector2Array(-17, 5, 313, 28, 321, 970, 1156, 973, 1460, 879, 17
 script = ExtResource("3_wu8ny")
 collision_polygon = NodePath("../CollisionPolygon2D")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Goal" type="Area2D" parent="."]
 position = Vector2(4053, 744)
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Goal"]
 scale = Vector2(0.25, 1)
 texture = ExtResource("1_w3bkd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
 shape = SubResource("RectangleShape2D_wu8ny")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_goal_body_entered"]
+[connection signal="body_entered" from="Goal" to="." method="_on_goal_body_entered"]
