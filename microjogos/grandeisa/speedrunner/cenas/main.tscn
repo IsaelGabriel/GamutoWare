@@ -14,6 +14,11 @@ position = Vector2(864, 639)
 script = ExtResource("1_so0i5")
 speed = 1200.0
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(4, -248)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.5
+
 [node name="Capa" type="Sprite2D" parent="Player"]
 modulate = Color(0.392157, 0.32549, 1, 1)
 scale = Vector2(0.2, 0.2)
