@@ -13,6 +13,9 @@ func _ready():
 	animator.play("start")
 	
 func _physics_process(delta: float) -> void:
+	if main.game_ended:
+		moving = false
+		return
 	if moving:
 		position += transform.x * SPEED * delta
 	if animator.current_animation == "start":
