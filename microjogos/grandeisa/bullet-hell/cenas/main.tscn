@@ -64,8 +64,14 @@ shape = SubResource("CircleShape2D_f8l4d")
 [node name="Sprite" type="Sprite2D" parent="Player"]
 texture = ExtResource("2_f8l4d")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ProjectileTimer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="VictoryTimer" type="Timer" parent="."]
+wait_time = 5.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="ProjectileTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="VictoryTimer" to="." method="_on_victory_timer_timeout"]

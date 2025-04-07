@@ -18,6 +18,8 @@ var projectile_prefab = preload("res://microjogos/grandeisa/bullet-hell/cenas/pr
 @export var player : Node2D
 @export var bounds: Node2D
 
+var game_ended = false
+
 # --------------------------------------------------------------------------------------------------
 # FUNÇÕES PADRÃO
 # --------------------------------------------------------------------------------------------------
@@ -37,13 +39,21 @@ func generate_projectile():
 	
 # Chame esta função para registrar que o jogador venceu o jogo
 func register_win():
+	game_ended = true
 	emit_signal("win")
 
 
 # Chame esta função para registrar que o jogador perdeu o jogo
 func register_lose():
+	game_ended = true
 	emit_signal("lose")
 
 
 func _on_timer_timeout() -> void:
+	if game_ended: return
 	generate_projectile()
+
+
+func _on_victory_timer_timeout() -> void:
+	if game_ended: return
+	register_win()
