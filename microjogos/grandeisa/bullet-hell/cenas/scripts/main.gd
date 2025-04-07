@@ -12,6 +12,11 @@ signal lose
 const WIDTH = 1920
 const HEIGHT = 1080
 
+var projectile_prefab = preload("res://microjogos/grandeisa/bullet-hell/cenas/projectile.tscn")
+
+@export var projectile_generation_radius: float = 64
+@export var player : Node2D
+@export var bounds: Node2D
 
 # --------------------------------------------------------------------------------------------------
 # FUNÇÕES PADRÃO
@@ -19,49 +24,17 @@ const HEIGHT = 1080
 
 # Esta função é chamada assim que esta cena é instanciada, ou seja, assim que seu minigame inicia
 func _ready():
-	# Verifica a linguagem do jogo e mostra texto nesta linguagem. Deve dar uma ideia do que deve
-	# ser feito para vencer o jogo. A fonte usada não suporta caracteres latinos como ~ ou ´
-	match Global.language:
-		Global.LANGUAGE.EN:
-			NotificationCenter.notify("DO SOMETHING!")
-		Global.LANGUAGE.PT:
-			NotificationCenter.notify("FAÇA ALGO!")
-
-
-# Esta função é chamada uma vez por frame e é otimizada para cálculos relacionados a física, como
-# a movimentação de um personagem. O parâmetro delta indica a quantidade de tempo que passou desde
-# a última chamada desta função. O comando pass não faz nada
-func _physics_process(delta):
-	pass
-
-
-# Esta função é chamada uma vez por frame e é otimizada para cálculos relacionados a renderização, 
-# como a movimentação de um personagem. O parâmetro delta indica a quantidade de tempo que passou 
-# desde a última chamada desta função. O comando pass não faz nada
-func _process(delta):
-	pass
-
-
-# --------------------------------------------------------------------------------------------------
-# SUAS FUNÇÕES
-# --------------------------------------------------------------------------------------------------
-
-
-# Um método genérico. Crie quantos métodos você precisar!
-func my_method():
-	pass
-
-
-# --------------------------------------------------------------------------------------------------
-# CONDIÇÕES DE VITÓRIA
-# --------------------------------------------------------------------------------------------------
-# Quando o jogo começa, ela assume que o jogador não conseguiu vencer o jogo ainda, ou seja, se não
-# acontecer nada, o jogador vai perder o jogo. A verificação se o jogador venceu o minigame é feita
-# com base na emissão dos sinais "win" e "lose". Se "win" foi o último sinal emitido, o jogador
-# vencerá o jogo, e se "lose" foi o último sinal emitido ou nenhum sinal foi emitido, o jogador
-# perderá o jogo
-
-
+	generate_projectile()
+	
+func generate_projectile():
+	var angle = randf() * 2 * PI
+	var projectile = projectile_prefab.instantiate()
+	projectile.position = Vector2(projectile_generation_radius, 0).rotated(angle)
+	projectile.position += bounds.position
+	projectile.player = player
+	projectile.main = self
+	add_child(projectile)
+	
 # Chame esta função para registrar que o jogador venceu o jogo
 func register_win():
 	emit_signal("win")
@@ -70,3 +43,7 @@ func register_win():
 # Chame esta função para registrar que o jogador perdeu o jogo
 func register_lose():
 	emit_signal("lose")
+
+
+func _on_timer_timeout() -> void:
+	generate_projectile()
