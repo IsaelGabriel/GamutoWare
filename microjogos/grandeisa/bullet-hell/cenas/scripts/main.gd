@@ -9,8 +9,8 @@ signal lose
 # tela 1920x1080, que é padrão para monitores full HD. Caso você queira uma resolução menor para 
 # atingir uma estética mais pixelada, você pode mudar estes números para qualquer outra resolução 
 # 16:9
-const WIDTH = 1920
-const HEIGHT = 1080
+const WIDTH = 1920 / 2
+const HEIGHT = 1080 / 2
 
 var projectile_prefab = preload("res://microjogos/grandeisa/bullet-hell/cenas/projectile.tscn")
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvugqtdcfuwdj"]
+[gd_scene load_steps=11 format=3 uid="uid://cvugqtdcfuwdj"]
 
 [ext_resource type="Script" uid="uid://boydh17qm8brd" path="res://microjogos/grandeisa/bullet-hell/cenas/scripts/main.gd" id="1_8o7er"]
 [ext_resource type="Texture2D" uid="uid://s1l41tksopkf" path="res://microjogos/grandeisa/bullet-hell/capa.png" id="1_da4oe"]
 [ext_resource type="Script" uid="uid://bin5yt0em2cvn" path="res://microjogos/grandeisa/bullet-hell/cenas/scripts/player.gd" id="2_cvxbb"]
 [ext_resource type="Texture2D" uid="uid://cfpa5un3cdvrd" path="res://microjogos/grandeisa/bullet-hell/recursos/imagens/Gamux-logo-16x16.png" id="2_f8l4d"]
+[ext_resource type="Texture2D" uid="uid://djq1o5uposxe6" path="res://microjogos/grandeisa/bullet-hell/recursos/imagens/gamuto.png" id="5_fdki2"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f8l4d"]
 normal = Vector2(0, 1)
@@ -32,6 +33,11 @@ bounds = NodePath("Bounds")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
+
+[node name="Gamuto" type="Sprite2D" parent="."]
+position = Vector2(0, -120)
+scale = Vector2(3, 3)
+texture = ExtResource("5_fdki2")
 
 [node name="Bounds" type="StaticBody2D" parent="."]
 position = Vector2(0, 67)
