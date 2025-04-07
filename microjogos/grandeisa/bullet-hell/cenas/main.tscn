@@ -1,4 +1,40 @@
-[gd_scene format=3 uid="uid://cvugqtdcfuwdj"]
+[gd_scene load_steps=6 format=3 uid="uid://cvugqtdcfuwdj"]
+
+[ext_resource type="Texture2D" uid="uid://s1l41tksopkf" path="res://microjogos/grandeisa/bullet-hell/capa.png" id="1_da4oe"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f8l4d"]
+normal = Vector2(0, 1)
+distance = -225.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cvxbb"]
+distance = -225.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8o7er"]
+normal = Vector2(1, 0)
+distance = -225.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fdki2"]
+normal = Vector2(-1, 0)
+distance = -225.0
 
 [node name="Main" type="Node2D"]
 texture_filter = 1
+
+[node name="Bounds" type="StaticBody2D" parent="."]
+position = Vector2(967, 747)
+
+[node name="Background" type="Sprite2D" parent="Bounds"]
+modulate = Color(1, 1, 1, 0.580392)
+texture = ExtResource("1_da4oe")
+
+[node name="BoundUp" type="CollisionShape2D" parent="Bounds"]
+shape = SubResource("WorldBoundaryShape2D_f8l4d")
+
+[node name="BoundDown" type="CollisionShape2D" parent="Bounds"]
+shape = SubResource("WorldBoundaryShape2D_cvxbb")
+
+[node name="BoundsLeft" type="CollisionShape2D" parent="Bounds"]
+shape = SubResource("WorldBoundaryShape2D_8o7er")
+
+[node name="BoundsRight" type="CollisionShape2D" parent="Bounds"]
+shape = SubResource("WorldBoundaryShape2D_fdki2")
