@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxlaoqy7svxec"]
+
+[ext_resource type="Script" uid="uid://dwruesp05tr2b" path="res://microjogos/grandeisa/bullet-hell/cenas/scripts/projectile.gd" id="1_4kek5"]
+[ext_resource type="Texture2D" uid="uid://dskj4scna30sy" path="res://microjogos/grandeisa/bullet-hell/recursos/imagens/fireball.png" id="2_fdu6i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r1nv5"]
+radius = 7.14288
+height = 56.5546
+
+[node name="Projectile" type="Area2D" node_paths=PackedStringArray("player")]
+scale = Vector2(3.5, 3.5)
+script = ExtResource("1_4kek5")
+player = NodePath("")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_fdu6i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.14286, 4.35114e-06)
+rotation = 1.5708
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_r1nv5")

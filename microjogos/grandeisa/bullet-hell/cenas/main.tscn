@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvugqtdcfuwdj"]
+[gd_scene load_steps=13 format=3 uid="uid://cvugqtdcfuwdj"]
 
+[ext_resource type="Script" uid="uid://boydh17qm8brd" path="res://microjogos/grandeisa/bullet-hell/cenas/scripts/main.gd" id="1_8o7er"]
 [ext_resource type="Texture2D" uid="uid://s1l41tksopkf" path="res://microjogos/grandeisa/bullet-hell/capa.png" id="1_da4oe"]
 [ext_resource type="Script" uid="uid://bin5yt0em2cvn" path="res://microjogos/grandeisa/bullet-hell/cenas/scripts/player.gd" id="2_cvxbb"]
 [ext_resource type="Texture2D" uid="uid://cfpa5un3cdvrd" path="res://microjogos/grandeisa/bullet-hell/recursos/imagens/Gamux-logo-16x16.png" id="2_f8l4d"]
+[ext_resource type="Script" uid="uid://dwruesp05tr2b" path="res://microjogos/grandeisa/bullet-hell/cenas/scripts/projectile.gd" id="5_fdki2"]
+[ext_resource type="Texture2D" uid="uid://dskj4scna30sy" path="res://microjogos/grandeisa/bullet-hell/recursos/imagens/fireball.png" id="6_r1nv5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_f8l4d"]
 normal = Vector2(0, 1)
@@ -22,8 +25,13 @@ distance = -225.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_f8l4d"]
 radius = 8.5
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r1nv5"]
+radius = 7.14288
+height = 56.5546
+
 [node name="Main" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_8o7er")
 
 [node name="Bounds" type="StaticBody2D" parent="."]
 position = Vector2(967, 747)
@@ -44,14 +52,30 @@ shape = SubResource("WorldBoundaryShape2D_8o7er")
 [node name="BoundsRight" type="CollisionShape2D" parent="Bounds"]
 shape = SubResource("WorldBoundaryShape2D_fdki2")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
 modulate = Color(0.533688, 0.314223, 1, 1)
 position = Vector2(967, 747)
 scale = Vector2(3.5, 3.5)
 script = ExtResource("2_cvxbb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CircleShape2D_f8l4d")
 
-[node name="Sprite" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite" type="Sprite2D" parent="Player"]
 texture = ExtResource("2_f8l4d")
+
+[node name="Projectile" type="Area2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(544, 960)
+scale = Vector2(3.5, 3.5)
+script = ExtResource("5_fdki2")
+player = NodePath("../Player")
+
+[node name="Sprite2D" type="Sprite2D" parent="Projectile"]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("6_r1nv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile"]
+position = Vector2(3.14286, 4.35114e-06)
+rotation = 1.5708
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_r1nv5")
